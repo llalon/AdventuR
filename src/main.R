@@ -1,11 +1,8 @@
-library(magick)
 library(imager)
 library(rlist)
 
 # SETTINGS
 FILE.SAVE <- "./save.yaml"
-
-
 TILE.SIZE <- 10
 
 # The game world. TODO: generate this dynamically
