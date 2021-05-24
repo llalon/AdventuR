@@ -1,0 +1,18 @@
+"0":
+  id: 1
+  desc: blank
+  x: 0
+  y: 0
+  set: ./res/Full.png
+"1":
+  id: 2
+  desc: tree1
+  x: 26
+  y: 1
+  set: ./res/Full.png
+"2":
+  id: 3
+  desc: player1
+  x: 32
+  y: 1
+  set: ./res/People.png
