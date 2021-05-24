@@ -1,14 +1,18 @@
 library(imager)
 library(grid)
 library(png)
+library(rlist)
+
+TILESIZE <- 10
+TILEMAP <- list.load("./res/tile_map.yaml")
 
 get_tile <- function(pos.x, pos.y, tile.set = TILESET, tile.size = TILESIZE)
 {
   # Creates a sub image from the tileset based on the given coords.
   # Returns a PNG (as matrix 4d).
   
-  
-  img <- readPNG(tile.set)
+  set <- paste0("C:/Users/liaml/git/AdventuR/res/", tile.set)
+  img <- readPNG(set)
   
   crop.x <- ((pos.x * tile.size)+1):((pos.x * tile.size)+tile.size)
   crop.y <- ((pos.y * tile.size)+1):((pos.y * tile.size)+tile.size)
@@ -63,9 +67,9 @@ create_screen <- function(df.screen, tile.map = TILEMAP, tile.size = TILESIZE)
 
 
 # Generate a forest
-#h <- 11
-#w <- 16
-#df <- data.frame(replicate(w,sample(0:1,1000,rep=TRUE)))[1:h, 1:w]
-#df[5,5] = 2
-#img.screen <- create_screen(df)
+h <- 11
+w <- 16
+df <- data.frame(replicate(w,sample(0:1,1000,rep=TRUE)))[1:h, 1:w]
+df[5,5] = 3
+img.screen <- create_screen(df)
 #grid.raster(img.screen)

@@ -4,8 +4,6 @@ source("./src/graphics.R")
 
 # SETTINGS
 FILESAVE <- "./save.yaml"
-TILESIZE <- 10
-TILEMAP <- list.load("./res/tile_map.yaml")
 CHUNKSIZE <- 100
 
 #h <- 11
