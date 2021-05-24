@@ -61,12 +61,6 @@ file.img <- "./res/Full-no-bg.png"
 screen <-  load.image(file.img)
 plot(screen)
 
-
-
-build_screen <- function(df.screen)
-{
-  # Takes the data frame of the world and generates an image that will be the screen
-  for (i in df.world)
-}
+ex <- read.csv("./res/levels/example.csv", header = FALSE)
 
 

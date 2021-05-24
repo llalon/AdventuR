@@ -5,9 +5,10 @@ library(png)
 TILESIZE <- 10
 TILESET <- "./res/Full.png"
 TILEMAP <- list(
-  '0' = c(7,1),
-  '1' = c(7,2),
-  '2' = c(7,3),
+  '0' = c(0,0), # Blank
+  '1' = c(26, 1), # Tree
+  '1306' = c(13,5),
+  '1902' = c(20,1),
   '3' = c(7,4)
 )
 
@@ -55,8 +56,8 @@ create_screen <- function(df.screen, tile.set = TILESET, tile.size = TILESIZE, t
       img <- get_tile(x, y)
       
       # Find bounds
-      offset.x <- (1 + ((i-1) * tile.size)):(((i-1) * tile.size) + tile.size)
-      offset.y <- (1 + ((j-1) * tile.size)):(((j-1) * tile.size) + tile.size)
+      offset.y <- (1 + ((i-1) * tile.size)):(((i-1) * tile.size) + tile.size)
+      offset.x <- (1 + ((j-1) * tile.size)):(((j-1) * tile.size) + tile.size)
       
       # Insert the sub image matrix into the screen
       img.screen[offset.y, offset.x, ] <- img[] 
@@ -69,15 +70,13 @@ create_screen <- function(df.screen, tile.set = TILESET, tile.size = TILESIZE, t
 
 
 # test
-img <- readPNG(TILESET)
+df.ex <- read.csv("./res/levels/example.csv", header = FALSE)
+img.screen <- create_screen(df.ex)
 grid.raster(img.screen)
-grid.raster(img[11:20, 81:90,]) # This is the one
 
-# Test
-t0 <- (img[11:30, 71:90,])
-t0 <- (get_tile(7, 1))
-t1 <- (get_tile(7, 2))
-t2 <- (get_tile(7, 3))
-t3 <- (get_tile(7, 4))
-t4 <- (get_tile(7, 5))
-grid.raster(t0)
+# Generate a forest
+h <- 11
+w <- 16
+df <- data.frame(replicate(w,sample(0:1,1000,rep=TRUE)))[1:h, 1:w]
+img.screen <- create_screen(df)
+grid.raster(img.screen)
