@@ -11,7 +11,7 @@ get_tile <- function(pos.x, pos.y, tile.set = TILESET, tile.size = TILESIZE)
   # Creates a sub image from the tileset based on the given coords.
   # Returns a PNG (as matrix 4d).
   
-  set <- paste0("C:/Users/liaml/git/AdventuR/res/", tile.set)
+  set <- paste("./res", tile.set, sep = "/")
   img <- readPNG(set)
   
   crop.x <- ((pos.x * tile.size)+1):((pos.x * tile.size)+tile.size)
@@ -36,7 +36,7 @@ create_screen <- function(df.screen, tile.map = TILEMAP, tile.size = TILESIZE)
   
   # Create an empty Screen
   img.screen <- array(rep(0, srow*scol*4), dim=c(srow, scol, 4))
-  
+  k = 1
   for (i in 1:nrow(df.screen)) {
     for (j in 1:ncol(df.screen)) {
       
@@ -50,7 +50,8 @@ create_screen <- function(df.screen, tile.map = TILEMAP, tile.size = TILESIZE)
       set <- tile.map[[id]]$set
       
       # Create sub image from these coords
-      img <- get_tile(x, y, tile.set = set)
+      img <- get_tile(x, y, set)
+      
       
       # Find bounds
       offset.y <- (1 + ((i-1) * tile.size)):(((i-1) * tile.size) + tile.size)
@@ -64,12 +65,3 @@ create_screen <- function(df.screen, tile.map = TILEMAP, tile.size = TILESIZE)
   # Return the image to plot
   return(img.screen)
 }
-
-
-# Generate a forest
-h <- 11
-w <- 16
-df <- data.frame(replicate(w,sample(0:1,1000,rep=TRUE)))[1:h, 1:w]
-df[5,5] = 3
-img.screen <- create_screen(df)
-#grid.raster(img.screen)
