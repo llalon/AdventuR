@@ -1,2 +1,9 @@
 # AdventuR
-Simple Adventure Game in R (Studio)
+A truely terrible and inefficent tileset game engine in R(Studio).
+
+```R
+main_game()
+```
+
+![](img/screenshot.png)
+
